@@ -1,0 +1,206 @@
+Welcome to the Document Processing System!
+set         - Prompt for the number of documents and their text.
+normalize   - Convert all documents to lowercase and display them.
+tokenize    - Tokenize all documents into words and display the tokens.
+remove_stop - Remove stop words from tokens and display the filtered tokens.
+stem        - Apply simple stemming (remove suffixes like "ing", "ed", "s") and display results.
+tf          - Compute and display Term Frequency for a specified word across documents.
+idf         - Compute and display Inverse Document Frequency for a specified word.
+tfidf       - Compute and display TF-IDF scores for a specified word across documents.
+stat        - Display TF, IDF, and TF-IDF for all tokens across all documents in a matrix format.
+help        - Print the list of all available commands.
+exit        - Exit the program.
+Enter command: set
+Enter number of documents (1-50): 3
+Enter document 1: This is the first document. It contains some simple text.
+Enter document 2: Second document here! It is slightly different in structure.
+Enter document 3: The third document has a few more words and a different tone.
+Documents set successfully.
+Enter command: normalize
+Normalized Documents:
+Document 1: this is the first document. it contains some simple text.
+Document 2: second document here! it is slightly different in structure.
+Document 3: the third document has a few more words and a different tone.
+Documents normalized.
+Enter command: tokenize
+Tokens:
+1. this
+2. is
+3. the
+4. first
+5. document
+6. it
+7. contains
+8. some
+9. simple
+10. text
+11. second
+12. document
+13. here
+14. it
+15. is
+16. slightly
+17. different
+18. in
+19. structure
+20. the
+21. third
+22. document
+23. has
+24. a
+25. few
+26. more
+27. words
+28. and
+29. a
+30. different
+31. tone
+Tokenization complete. Total tokens: 31
+Enter command: remove_stop
+Tokens after stop-word removal:
+1. this
+2. first
+3. document
+4. it
+5. contains
+6. some
+7. simple
+8. text
+9. second
+10. document
+11. here
+12. it
+13. slightly
+14. different
+15. structure
+16. third
+17. document
+18. has
+19. few
+20. more
+21. words
+22. different
+23. tone
+Stop-word removal complete. Tokens remaining: 23
+Enter command: stem
+Stemmed Tokens:
+1. thi
+2. first
+3. document
+4. it
+5. contain
+6. some
+7. simple
+8. text
+9. second
+10. document
+11. here
+12. it
+13. slightly
+14. different
+15. structure
+16. third
+17. document
+18. ha
+19. few
+20. more
+21. word
+22. different
+23. tone
+Stemming complete. Total stemmed tokens: 23
+Enter command: stat
+============== TF ================
+                            doc1        doc2        doc3
+contain                   0.1250      0.0000      0.0000
+different                 0.0000      0.1429      0.1250
+document                  0.1250      0.1429      0.1250
+few                       0.0000      0.0000      0.1250
+first                     0.1250      0.0000      0.0000
+ha                        0.0000      0.0000      0.1250
+here                      0.0000      0.1429      0.0000
+it                        0.1250      0.1429      0.0000
+more                      0.0000      0.0000      0.1250
+second                    0.0000      0.1429      0.0000
+simple                    0.1250      0.0000      0.0000
+slightly                  0.0000      0.1429      0.0000
+some                      0.1250      0.0000      0.0000
+structure                 0.0000      0.1429      0.0000
+text                      0.1250      0.0000      0.0000
+thi                       0.1250      0.0000      0.0000
+third                     0.0000      0.0000      0.1250
+tone                      0.0000      0.0000      0.1250
+word                      0.0000      0.0000      0.1250
+
+=============== IDF ===============
+                             IDF
+contain                   1.3979
+different                 1.2218
+document                  1.0969
+few                       1.3979
+first                     1.3979
+ha                        1.3979
+here                      1.3979
+it                        1.2218
+more                      1.3979
+second                    1.3979
+simple                    1.3979
+slightly                  1.3979
+some                      1.3979
+structure                 1.3979
+text                      1.3979
+thi                       1.3979
+third                     1.3979
+tone                      1.3979
+word                      1.3979
+
+============= TF-IDF ==============
+                            doc1        doc2        doc3
+contain                   0.1747      0.0000      0.0000
+different                 0.0000      0.1745      0.1527
+document                  0.1371      0.1567      0.1371
+few                       0.0000      0.0000      0.1747
+first                     0.1747      0.0000      0.0000
+ha                        0.0000      0.0000      0.1747
+here                      0.0000      0.1997      0.0000
+it                        0.1527      0.1745      0.0000
+more                      0.0000      0.0000      0.1747
+second                    0.0000      0.1997      0.0000
+simple                    0.1747      0.0000      0.0000
+slightly                  0.0000      0.1997      0.0000
+some                      0.1747      0.0000      0.0000
+structure                 0.0000      0.1997      0.0000
+text                      0.1747      0.0000      0.0000
+thi                       0.1747      0.0000      0.0000
+third                     0.0000      0.0000      0.1747
+tone                      0.0000      0.0000      0.1747
+word                      0.0000      0.0000      0.1747
+Enter command: tf
+Enter word to compute TF: simple
+Document 1: 0.1250
+Document 2: 0.0000
+Document 3: 0.0000
+Enter command: idf
+Enter word to compute IDF: third
+IDF for 'third': 1.3979
+Enter command: tfidf
+Enter word to compute TF-IDF: document
+TF-IDF for 'document':
+Document 1: 0.1371
+Document 2: 0.1567
+Document 3: 0.1371
+Enter command: hello
+Unknown command. Type 'help' for list of commands.
+Enter command: help
+set         - Prompt for the number of documents and their text.
+normalize   - Convert all documents to lowercase and display them.
+tokenize    - Tokenize all documents into words and display the tokens.
+remove_stop - Remove stop words from tokens and display the filtered tokens.
+stem        - Apply simple stemming (remove suffixes like "ing", "ed", "s") and display results.
+tf          - Compute and display Term Frequency for a specified word across documents.
+idf         - Compute and display Inverse Document Frequency for a specified word.
+tfidf       - Compute and display TF-IDF scores for a specified word across documents.
+stat        - Display TF, IDF, and TF-IDF for all tokens across all documents in a matrix format.
+help        - Print the list of all available commands.
+exit        - Exit the program.
+Enter command: exit
+Exiting program.

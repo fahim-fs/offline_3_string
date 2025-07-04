@@ -1,0 +1,202 @@
+Welcome to the Document Processing System!
+set         - Prompt for the number of documents and their text.
+normalize   - Convert all documents to lowercase and display them.
+tokenize    - Tokenize all documents into words and display the tokens.
+remove_stop - Remove stop words from tokens and display the filtered tokens.
+stem        - Apply simple stemming (remove suffixes like "ing", "ed", "s") and display results.
+tf          - Compute and display Term Frequency for a specified word across documents.
+idf         - Compute and display Inverse Document Frequency for a specified word.
+tfidf       - Compute and display TF-IDF scores for a specified word across documents.
+stat        - Display TF, IDF, and TF-IDF for all tokens across all documents in a matrix format.
+help        - Print the list of all available commands.
+exit        - Exit the program.
+Enter command: set
+Enter number of documents (1-50): 5
+Enter document 1: The cat is sleeping on the sofa.
+Enter document 2: Dogs barked loudly and chased the cat.
+Enter document 3: An old man was reading a book in the library.
+Enter document 4: Children are playing games in the park.
+Enter document 5: Reading books helps to improve the mind.
+Documents set successfully.
+Enter command: normalize
+Normalized Documents:
+Document 1: the cat is sleeping on the sofa.
+Document 2: dogs barked loudly and chased the cat.
+Document 3: an old man was reading a book in the library.
+Document 4: children are playing games in the park.
+Document 5: reading books helps to improve the mind.
+Documents normalized.
+Enter command: tokenize
+Tokens:
+1. the
+2. cat
+3. is
+4. sleeping
+5. on
+6. the
+7. sofa
+8. dogs
+9. barked
+10. loudly
+11. and
+12. chased
+13. the
+14. cat
+15. an
+16. old
+17. man
+18. was
+19. reading
+20. a
+21. book
+22. in
+23. the
+24. library
+25. children
+26. are
+27. playing
+28. games
+29. in
+30. the
+31. park
+32. reading
+33. books
+34. helps
+35. to
+36. improve
+37. the
+38. mind
+Tokenization complete. Total tokens: 38
+Enter command: remove_stop
+Tokens after stop-word removal:
+1. cat
+2. sleeping
+3. on
+4. sofa
+5. dogs
+6. barked
+7. loudly
+8. chased
+9. cat
+10. old
+11. man
+12. was
+13. reading
+14. book
+15. library
+16. children
+17. are
+18. playing
+19. games
+20. park
+21. reading
+22. books
+23. helps
+24. improve
+25. mind
+Stop-word removal complete. Tokens remaining: 25
+Enter command: stem
+Stemmed Tokens:
+1. cat
+2. sleep
+3. on
+4. sofa
+5. dog
+6. bark
+7. loudly
+8. chas
+9. cat
+10. old
+11. man
+12. wa
+13. read
+14. book
+15. library
+16. children
+17. are
+18. play
+19. game
+20. park
+21. read
+22. book
+23. help
+24. improve
+25. mind
+Stemming complete. Total stemmed tokens: 25
+Enter command: stat
+============== TF ================
+                            doc1        doc2        doc3        doc4        doc5
+are                       0.0000      0.0000      0.0000      0.2000      0.0000
+bark                      0.0000      0.2000      0.0000      0.0000      0.0000
+book                      0.0000      0.0000      0.1667      0.0000      0.2000
+cat                       0.2500      0.2000      0.0000      0.0000      0.0000
+chas                      0.0000      0.2000      0.0000      0.0000      0.0000
+children                  0.0000      0.0000      0.0000      0.2000      0.0000
+dog                       0.0000      0.2000      0.0000      0.0000      0.0000
+game                      0.0000      0.0000      0.0000      0.2000      0.0000
+help                      0.0000      0.0000      0.0000      0.0000      0.2000
+improve                   0.0000      0.0000      0.0000      0.0000      0.2000
+library                   0.0000      0.0000      0.1667      0.0000      0.0000
+loudly                    0.0000      0.2000      0.0000      0.0000      0.0000
+man                       0.0000      0.0000      0.1667      0.0000      0.0000
+mind                      0.0000      0.0000      0.0000      0.0000      0.2000
+old                       0.0000      0.0000      0.1667      0.0000      0.0000
+on                        0.2500      0.0000      0.0000      0.0000      0.0000
+park                      0.0000      0.0000      0.0000      0.2000      0.0000
+play                      0.0000      0.0000      0.0000      0.2000      0.0000
+read                      0.0000      0.0000      0.1667      0.0000      0.2000
+sleep                     0.2500      0.0000      0.0000      0.0000      0.0000
+sofa                      0.2500      0.0000      0.0000      0.0000      0.0000
+wa                        0.0000      0.0000      0.1667      0.0000      0.0000
+
+=============== IDF ===============
+                             IDF
+are                       1.3979
+bark                      1.3979
+book                      1.2218
+cat                       1.2218
+chas                      1.3979
+children                  1.3979
+dog                       1.3979
+game                      1.3979
+help                      1.3979
+improve                   1.3979
+library                   1.3979
+loudly                    1.3979
+man                       1.3979
+mind                      1.3979
+old                       1.3979
+on                        1.3979
+park                      1.3979
+play                      1.3979
+read                      1.2218
+sleep                     1.3979
+sofa                      1.3979
+wa                        1.3979
+
+============= TF-IDF ==============
+                            doc1        doc2        doc3        doc4        doc5
+are                       0.0000      0.0000      0.0000      0.2796      0.0000
+bark                      0.0000      0.2796      0.0000      0.0000      0.0000
+book                      0.0000      0.0000      0.2036      0.0000      0.2444
+cat                       0.3055      0.2444      0.0000      0.0000      0.0000
+chas                      0.0000      0.2796      0.0000      0.0000      0.0000
+children                  0.0000      0.0000      0.0000      0.2796      0.0000
+dog                       0.0000      0.2796      0.0000      0.0000      0.0000
+game                      0.0000      0.0000      0.0000      0.2796      0.0000
+help                      0.0000      0.0000      0.0000      0.0000      0.2796
+improve                   0.0000      0.0000      0.0000      0.0000      0.2796
+library                   0.0000      0.0000      0.2330      0.0000      0.0000
+loudly                    0.0000      0.2796      0.0000      0.0000      0.0000
+man                       0.0000      0.0000      0.2330      0.0000      0.0000
+mind                      0.0000      0.0000      0.0000      0.0000      0.2796
+old                       0.0000      0.0000      0.2330      0.0000      0.0000
+on                        0.3495      0.0000      0.0000      0.0000      0.0000
+park                      0.0000      0.0000      0.0000      0.2796      0.0000
+play                      0.0000      0.0000      0.0000      0.2796      0.0000
+read                      0.0000      0.0000      0.2036      0.0000      0.2444
+sleep                     0.3495      0.0000      0.0000      0.0000      0.0000
+sofa                      0.3495      0.0000      0.0000      0.0000      0.0000
+wa                        0.0000      0.0000      0.2330      0.0000      0.0000
+Enter command: exit
+Exiting program.
