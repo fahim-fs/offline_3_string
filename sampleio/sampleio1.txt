@@ -1,9 +1,6 @@
 Welcome to the Document Processing System!
 set         - Prompt for the number of documents and their text.
-normalize   - Convert all documents to lowercase and display them.
-tokenize    - Tokenize all documents into words and display the tokens.
-remove_stop - Remove stop words from tokens and display the filtered tokens.
-stem        - Apply simple stemming (remove suffixes like "ing", "ed", "s") and display results.
+preprocess  - Apply normalization, tokenization, stop-words removal, and stemming orderly.
 tf          - Compute and display Term Frequency for a specified word across documents.
 idf         - Compute and display Inverse Document Frequency for a specified word.
 tfidf       - Compute and display TF-IDF scores for a specified word across documents.
@@ -15,14 +12,12 @@ Enter number of documents (1-50): 3
 Enter document 1: This is the first document. It contains some simple text.
 Enter document 2: Second document here! It is slightly different in structure.
 Enter document 3: The third document has a few more words and a different tone.
-Documents set successfully.
-Enter command: normalize
+Documents set successfully. Please, enter `preprocess' command now. It will not take other commands.
 Normalized Documents:
 Document 1: this is the first document. it contains some simple text.
 Document 2: second document here! it is slightly different in structure.
 Document 3: the third document has a few more words and a different tone.
 Documents normalized.
-Enter command: tokenize
 Tokens:
 1. this
 2. is
@@ -56,7 +51,6 @@ Tokens:
 30. different
 31. tone
 Tokenization complete. Total tokens: 31
-Enter command: remove_stop
 Tokens after stop-word removal:
 1. this
 2. first
@@ -82,7 +76,6 @@ Tokens after stop-word removal:
 22. different
 23. tone
 Stop-word removal complete. Tokens remaining: 23
-Enter command: stem
 Stemmed Tokens:
 1. thi
 2. first
@@ -192,10 +185,7 @@ Enter command: hello
 Unknown command. Type 'help' for list of commands.
 Enter command: help
 set         - Prompt for the number of documents and their text.
-normalize   - Convert all documents to lowercase and display them.
-tokenize    - Tokenize all documents into words and display the tokens.
-remove_stop - Remove stop words from tokens and display the filtered tokens.
-stem        - Apply simple stemming (remove suffixes like "ing", "ed", "s") and display results.
+preprocess  - Apply normalization, tokenization, stop-words removal, and stemming orderly.
 tf          - Compute and display Term Frequency for a specified word across documents.
 idf         - Compute and display Inverse Document Frequency for a specified word.
 tfidf       - Compute and display TF-IDF scores for a specified word across documents.
