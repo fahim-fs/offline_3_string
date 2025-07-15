@@ -400,15 +400,7 @@ void display_stat()
     unq_tok_num = j;
 
     //tf_printing
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
-    printf(" TF ");
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
+    printf("============== TF ================");
     printf("\n");
     printf("%30s", "");
     for (int i = 0; i < num_doc; i++)
@@ -427,15 +419,7 @@ void display_stat()
     }
 
     //idf_printing
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
-    printf(" IDF ");
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
+    printf("=============== IDF ===============");
     printf("\n");
     printf("%41s", "IDF\n");
     for (int i = 0; i < unq_tok_num; i++)
@@ -445,15 +429,7 @@ void display_stat()
     }
 
     //tf-idf_printing
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
-    printf(" TF-IDF ");
-    for (int i = 0; i < 14; i++)
-    {
-        printf("=");
-    }
+    printf("============= TF-IDF ==============");
     printf("\n");
     printf("%30s", "");
     for (int i = 0; i < num_doc; i++)
@@ -471,7 +447,6 @@ void display_stat()
         }
         printf("\n");
     }
-
 }
 
 int cmpstring(const void* a, const void* b)
