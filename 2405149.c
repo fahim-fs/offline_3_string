@@ -55,9 +55,30 @@ int main()
                     {
                         printf("Enter document %d: ", i + 1);
                         fgets(documents[i], MAX_LEN, stdin);
-                        documents[i][strcspn(documents[i], "\n")] = '\0';
+                        int l = strlen(documents[i]);
+                        if (l > 0 && documents[i][l - 1] == '\n')
+                        {
+                            documents[i][l - 1] = '\0';
+
+                        }
+                        else
+                        {
+                            printf("Document too long.");
+                            --i;
+                            int ch;
+                            while ((ch = getchar()) != '\n' && ch != EOF);
+                        }
+                        // for(int j = 0; j < MAX_LEN; j++)
+                        // {
+                        //     if(documents[i][j] == '\n')
+                        //     {
+                        //         documents[i][j] = '\0';
+                        //         break;
+                        //     }
+                        // }
+                        // documents[i][strcspn(documents[i], "\n")] = '\0';
                     }
-                    printf("Documents set successfully. Please, enter \"preprocess\" command now. It will not take other commands.");
+                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
                     f_1 = 1;
                     break;
                 }
@@ -126,7 +147,7 @@ int main()
                 char wrd3[50];
                 printf("Enter word to compute TF-IDF: ");
                 scanf("%s", wrd3);
-                printf("TF-IDF for '%s':\n");
+                printf("TF-IDF for '%s':\n", wrd3);
                 compute_tfidf_all(wrd3);
             }
             else
@@ -386,11 +407,10 @@ void display_stat()
         printf("=");
     }
     printf("\n");
-    printf("%32s", "");
+    printf("%30s", "");
     for (int i = 0; i < num_doc; i++)
     {
-
-        printf("doc%-9d", i + 1);
+        printf("%9s%d", "doc", i + 1);
     }
     printf("\n");
     for (int i = 0; i < unq_tok_num; i++)
@@ -398,7 +418,7 @@ void display_stat()
         printf("%-30s", unique_tokens[i]);
         for (int t = 0; t < num_doc; t++)
         {
-            printf("%.4f%6s", compute_tf(unique_tokens[i], t), "");
+            printf("%10.4f", compute_tf(unique_tokens[i], t));
         }
         printf("\n");
     }
@@ -414,10 +434,10 @@ void display_stat()
         printf("=");
     }
     printf("\n");
-    printf("%37s", "IDF\n");
+    printf("%41s", "IDF\n");
     for (int i = 0; i < unq_tok_num; i++)
     {
-        printf("%-29s %.4f", unique_tokens[i], compute_idf(unique_tokens[i]));
+        printf("%-33s %.4f", unique_tokens[i], compute_idf(unique_tokens[i]));
         printf("\n");
     }
 
@@ -432,20 +452,19 @@ void display_stat()
         printf("=");
     }
     printf("\n");
-    printf("%32s", "");
+    printf("%30s", "");
     for (int i = 0; i < num_doc; i++)
     {
-
-        printf("doc%-9d", i + 1);
+        printf("%9s%d", "doc", i + 1);
     }
     printf("\n");
     for (int i = 0; i < unq_tok_num; i++)
     {
         printf("%-30s", unique_tokens[i]);
         double idf_st = compute_idf(unique_tokens[i]);
-        for(int j = 0; j < num_doc; j++)
+        for (int j = 0; j < num_doc; j++)
         {
-                printf("%.4f%6s", compute_tf(unique_tokens[i], j) * idf_st, "");
+            printf("%10.4f", compute_tf(unique_tokens[i], j) * idf_st);
         }
         printf("\n");
     }
