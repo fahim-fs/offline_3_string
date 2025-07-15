@@ -71,6 +71,8 @@ int main()
                     }
                     printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
                     f_1 = 1;
+                    f_2 = 0;
+                
                     break;
                 }
                 else
@@ -119,7 +121,7 @@ int main()
                     }
                 }
                 else
-                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
+                    printf("Please, enter \'preprocess\' command now. It will not take other commands.");
 
             }
             else
@@ -137,7 +139,7 @@ int main()
                     printf("IDF for '%s': %.4f", wrd2, compute_idf(wrd2));
                 }
                 else
-                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
+                    printf("Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -155,7 +157,7 @@ int main()
                     compute_tfidf_all(wrd3);
                 }
                 else
-                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
+                    printf("Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -169,7 +171,7 @@ int main()
                     display_stat();
                 }
                 else
-                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
+                    printf("Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
