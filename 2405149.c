@@ -68,15 +68,6 @@ int main()
                             int ch;
                             while ((ch = getchar()) != '\n' && ch != EOF);
                         }
-                        // for(int j = 0; j < MAX_LEN; j++)
-                        // {
-                        //     if(documents[i][j] == '\n')
-                        //     {
-                        //         documents[i][j] = '\0';
-                        //         break;
-                        //     }
-                        // }
-                        // documents[i][strcspn(documents[i], "\n")] = '\0';
                     }
                     printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
                     f_1 = 1;
