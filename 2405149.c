@@ -33,7 +33,7 @@ int cmpstring(const void* a, const void* b);
 int main()
 {
     printf("Welcome to the Document Processing System!\n");
-    int f_1 = 0;
+    int f_1 = 0, f_2 = 0;
     char cmd[30];
     help();
     while (1)
@@ -99,6 +99,7 @@ int main()
                     else
                         break;
                 }
+                f_2 = 1;
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -107,13 +108,18 @@ int main()
         {
             if (f_1)
             {
-                char wrd1[50];
-                printf("Enter word to compute TF: ");
-                scanf("%s", wrd1);
-                for (int i = 0; i < num_doc; i++)
+                if (f_2)
                 {
-                    printf("Document %d: %.4f\n", i + 1, compute_tf(wrd1, i));
+                    char wrd1[50];
+                    printf("Enter word to compute TF: ");
+                    scanf("%s", wrd1);
+                    for (int i = 0; i < num_doc; i++)
+                    {
+                        printf("Document %d: %.4f\n", i + 1, compute_tf(wrd1, i));
+                    }
                 }
+                else
+                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
 
             }
             else
@@ -123,10 +129,15 @@ int main()
         {
             if (f_1)
             {
-                char wrd2[50];
-                printf("Enter word to compute IDF: ");
-                scanf("%s", wrd2);
-                printf("IDF for '%s': %.4f", wrd2, compute_idf(wrd2));
+                if (f_2)
+                {
+                    char wrd2[50];
+                    printf("Enter word to compute IDF: ");
+                    scanf("%s", wrd2);
+                    printf("IDF for '%s': %.4f", wrd2, compute_idf(wrd2));
+                }
+                else
+                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -135,11 +146,16 @@ int main()
         {
             if (f_1)
             {
-                char wrd3[50];
-                printf("Enter word to compute TF-IDF: ");
-                scanf("%s", wrd3);
-                printf("TF-IDF for '%s':\n", wrd3);
-                compute_tfidf_all(wrd3);
+                if (f_2)
+                {
+                    char wrd3[50];
+                    printf("Enter word to compute TF-IDF: ");
+                    scanf("%s", wrd3);
+                    printf("TF-IDF for '%s':\n", wrd3);
+                    compute_tfidf_all(wrd3);
+                }
+                else
+                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -148,7 +164,12 @@ int main()
         {
             if (f_1)
             {
-                display_stat();
+                if (f_2)
+                {
+                    display_stat();
+                }
+                else
+                    printf("Documents set successfully. Please, enter \'preprocess\' command now. It will not take other commands.");
             }
             else
                 printf("No documents set. Use \'set\' command first.");
@@ -240,49 +261,45 @@ void remove_stop_words_all()
     int start, end;
     for (int i = 0; i < MAX_TOKENS; i++)
         tokens_except_stop_words[i][0] = '\0';
-    if (tokens[0][0] != 0)
+    for (int doc = 0; doc < num_doc; doc++)
     {
-        for (int doc = 0; doc < num_doc; doc++)
+        start = token_flag[doc];
+        end = token_flag[doc + 1];
+        token_flag[doc] = token_c_except_stop;
+        for (int i = start; i < end; i++)
         {
-            start = token_flag[doc];
-            end = token_flag[doc + 1];
-            token_flag[doc] = token_c_except_stop;
-            for (int i = start; i < end; i++)
+            int is_num_stop = 0;
+            for (int j = 0; j < NUM_STOP_WORDS; j++)
             {
-                int is_num_stop = 0;
-                for (int j = 0; j < NUM_STOP_WORDS; j++)
+                if (strcmp(tokens[i], stop_words[j]) == 0)
                 {
-                    if (strcmp(tokens[i], stop_words[j]) == 0)
-                    {
-                        is_num_stop = 1;
-                        break;
-                    }
+                    is_num_stop = 1;
+                    break;
                 }
-                if (!is_num_stop)
-                {
-                    strcpy(tokens_except_stop_words[token_c_except_stop], tokens[i]);
-                    token_c_except_stop++;
-                }
-
             }
+            if (!is_num_stop)
+            {
+                strcpy(tokens_except_stop_words[token_c_except_stop], tokens[i]);
+                token_c_except_stop++;
+            }
+
         }
-        token_flag[num_doc] = token_c_except_stop;
-        printf("Tokens after stop-word removal:\n");
-        for (int i = 0; i < token_c_except_stop; i++)
-        {
-            printf("%d. %s\n", i + 1, tokens_except_stop_words[i]);
-        }
-        printf("Stop-word removal complete. Tokens remaining: %d\n", token_c_except_stop);
-        for (int i = 0; i < MAX_TOKENS; i++)
-            tokens[i][0] = '\0';
-        for (int i = 0; i < token_c_except_stop; i++)
-        {
-            strcpy(tokens[i], tokens_except_stop_words[i]);
-        }
-        token_count = token_c_except_stop;
     }
-    else
-        printf("No tokens available. Use\'tokenize\' command first.\n");
+    token_flag[num_doc] = token_c_except_stop;
+    printf("Tokens after stop-word removal:\n");
+    for (int i = 0; i < token_c_except_stop; i++)
+    {
+        printf("%d. %s\n", i + 1, tokens_except_stop_words[i]);
+    }
+    printf("Stop-word removal complete. Tokens remaining: %d\n", token_c_except_stop);
+    for (int i = 0; i < MAX_TOKENS; i++)
+        tokens[i][0] = '\0';
+    for (int i = 0; i < token_c_except_stop; i++)
+    {
+        strcpy(tokens[i], tokens_except_stop_words[i]);
+    }
+    token_count = token_c_except_stop;
+
 }
 
 void stem_all_tokens(int b)
@@ -290,28 +307,23 @@ void stem_all_tokens(int b)
     for (int i = 0; i < MAX_TOKENS; i++)
         stemmed_tokens[i][0] = '\0';
     char suffix[4][10] = { "ing", "ed", "s" };
-    if (tokens[0][0] != 0)
+    for (int i = 0; i < b; i++)
     {
-        for (int i = 0; i < b; i++)
-        {
-            strcpy(stemmed_tokens[i], tokens_except_stop_words[i]);
-            int len = strlen(stemmed_tokens[i]);
-            if (len > 3 && strcmp(&stemmed_tokens[i][len - 3], "ing") == 0)
-                stemmed_tokens[i][len - 3] = '\0';
-            else if (len > 2 && strcmp(&stemmed_tokens[i][len - 2], "ed") == 0)
-                stemmed_tokens[i][len - 2] = '\0';
-            else if (len > 1 && stemmed_tokens[i][len - 1] == 's')
-                stemmed_tokens[i][len - 1] = '\0';
-        }
-        printf("Stemmed Tokens:\n");
-        for (int i = 0; i < b; i++)
-        {
-            printf("%d. %s\n", i + 1, stemmed_tokens[i]);
-        }
-        printf("Stemming complete. Total stemmed tokens: %d\n", b);
+        strcpy(stemmed_tokens[i], tokens_except_stop_words[i]);
+        int len = strlen(stemmed_tokens[i]);
+        if (len > 3 && strcmp(&stemmed_tokens[i][len - 3], "ing") == 0)
+            stemmed_tokens[i][len - 3] = '\0';
+        else if (len > 2 && strcmp(&stemmed_tokens[i][len - 2], "ed") == 0)
+            stemmed_tokens[i][len - 2] = '\0';
+        else if (len > 1 && stemmed_tokens[i][len - 1] == 's')
+            stemmed_tokens[i][len - 1] = '\0';
     }
-    else
-        printf("No tokens available. Use\'tokenize\' command first.\n");
+    printf("Stemmed Tokens:\n");
+    for (int i = 0; i < b; i++)
+    {
+        printf("%d. %s\n", i + 1, stemmed_tokens[i]);
+    }
+    printf("Stemming complete. Total stemmed tokens: %d\n", b);
 }
 
 double compute_tf(char word[], int doc_id)
